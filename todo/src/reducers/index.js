@@ -1,4 +1,4 @@
-import { ADD_TODO, DELETE_TODO, TOGGLE_TODO } from "../actions";
+import { ADD_TODO, DELETE_TODO, DELETE_ALL, DELETE_SELECTED, TOGGLE_TODO } from "../actions";
 
 const initialState = {
     todos: [
@@ -20,7 +20,17 @@ export default (state = initialState, action) => {
         case ADD_TODO:
             return state = { todos: [...state.todos, action.payload] };
         case DELETE_TODO:
-            return state = { todos: state.todos.filter(todoObj => todoObj.id !== action.payload) };
+            return state.todos.filter(todoObj => todoObj.id !== action.payload);
+        case DELETE_ALL:
+            return state = { todos: [] }
+        case DELETE_SELECTED:
+            return state.todos.filter(todoObj => !todoObj.completed)
+        case TOGGLE_TODO:
+            return state.todos.map(todoObj => {
+                if (todoObj.id === action.payload) {
+                    return todoObj.completed = true;
+                }
+            })
         default:
             return state;
     }
