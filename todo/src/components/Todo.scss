@@ -27,16 +27,29 @@ ul {
         padding: 6px 0 6px 10%; 
         color: white;
         background: #591958;
-        &:hover {background: #523270;}
+        &:hover {
+            background: #523270;
+            span {display: block;}
+        }
+        &.complete {
+            text-decoration: line-through;
+            background: #195728;
+        }
+        &.complete:hover {background: #126F40;}
+
+        span {
+            z-index: 10;
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 0;
+            margin: 6px;
+            &:hover {text-shadow: 3px white;}
+        }
     }
 }
 
 
-.complete {
-    text-decoration: line-through;
-    background: #195728;
-}
-.complete:hover {background: #126F40;}
 
 form {
     padding: 10px 0 20px;
@@ -46,37 +59,38 @@ form {
     flex-flow: column wrap;
     align-content: space-around;
     justify-content: space-between;
-    background: rgba(0, 0, 0, 0.2)
+    background: rgba(0, 0, 0, 0.2);
+
+    input {
+        height: 40%;
+        width: 48%;
+        background: #523270;
+        border: 1px solid white;
+        border-radius: 3px;
+        padding-left: 5px;
+        color: white;
+        box-shadow: 0 0 5px white;
+    }
+    
+    button {
+        cursor: pointer;
+        width: 30%;
+        padding: 7px 10px;
+        background: #591958;
+        border: 1px solid #591958;
+        border-radius: 3px;
+        color: white;
+        &:hover {
+            background: #523270;
+            border: 1px solid white;
+            box-shadow: 0 0 5px white;
+        }
+    }
+    
+    .clear {background: #195728; border: 1px solid #195728;}
+    .clear:hover {background: #126F40;}
 }
 
-input {
-    height: 40%;
-    width: 48%;
-    background: #523270;
-    border: 1px solid white;
-    border-radius: 3px;
-    padding-left: 5px;
-    color: white;
-    box-shadow: 0 0 5px white;
-}
-
-button {
-    cursor: pointer;
-    width: 30%;
-    padding: 7px 10px;
-    background: #591958;
-    border: 1px solid #591958;
-    border-radius: 3px;
-    color: white;
-}
-button:hover {
-    background: #523270;
-    border: 1px solid white;
-    box-shadow: 0 0 5px white;
-}
-
-.clear {background: #195728; border: 1px solid #195728;}
-.clear:hover {background: #126F40;}
 
 
 
