@@ -1,9 +1,10 @@
-// your components will all go in this `component` directory.
-// feel free to change this component.js into TodoList.js
 import React from 'react';
+import uuid from "uuid";
+import {connect} from "react-redux";
+
 import Todo from './TodoItem';
 import TodoForm from './TodoForm';
-import {connect} from "react-redux";
+import {toggleTodo, addTodo, deleteTodo, deleteAll, deleteSelected } from "../actions";
 
 import './Todo.scss';
 
@@ -26,26 +27,26 @@ class TodoList extends React.Component {
 
     addTodo = (e) => {
         e.preventDefault();
-        
+        this.props.addTodo({id: uuid.v4(), task: this.state.input, completed: false});
+        this.setState({input: ""});
     }
 
-    toggleComplete = (e) => {
-        
+    toggleComplete = id => {
+        this.props.toggleTodo(id);
+    }
+
+    clearItem = id => {
+        this.props.deleteTodo(id)
     }
 
     clearCompleted = (e) => {
         e.preventDefault();
-        
-    }
-
-    clearCompleted = (e) => {
-        e.preventDefault();
-        
+        this.props.deleteSelected();
     }
 
     clearAll = (e) => {
         e.preventDefault();
-        
+        this.props.deleteAll();
     }
 
     render() {
@@ -83,4 +84,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(TodoList);
+export default connect(mapStateToProps, {toggleTodo, addTodo, deleteTodo, deleteAll, deleteSelected })(TodoList);

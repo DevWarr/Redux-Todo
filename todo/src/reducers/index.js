@@ -18,19 +18,17 @@ const initialState = {
 export default (state = initialState, action) => {
     switch (action.type) {
         case ADD_TODO:
-            return state = { todos: [...state.todos, action.payload] };
+            return { todos: [...state.todos, action.payload] };
         case DELETE_TODO:
-            return state.todos.filter(todoObj => todoObj.id !== action.payload);
+            console.log("DelOne")
+            return { todos: state.todos.filter(todoObj => todoObj.id !== action.payload) };
         case DELETE_ALL:
-            return state = { todos: [] }
+            return { todos: [] }
         case DELETE_SELECTED:
-            return state.todos.filter(todoObj => !todoObj.completed)
+            return { todos: state.todos.filter(todoObj => !todoObj.completed) };
         case TOGGLE_TODO:
-            return state.todos.map(todoObj => {
-                if (todoObj.id === action.payload) {
-                    return todoObj.completed = true;
-                }
-            })
+            state.todos[action.payload].completed = !state.todos[action.payload].completed;
+            return { todos: [...state.todos]}
         default:
             return state;
     }
