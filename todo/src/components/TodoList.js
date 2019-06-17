@@ -1,8 +1,10 @@
 // your components will all go in this `component` directory.
 // feel free to change this component.js into TodoList.js
 import React from 'react';
-import Todo from './Todo';
+import Todo from './TodoItem';
 import TodoForm from './TodoForm';
+import {connect} from "react-redux";
+
 import './Todo.scss';
 
 class TodoList extends React.Component {
@@ -46,13 +48,11 @@ class TodoList extends React.Component {
         
     }
 
-
-
     render() {
         return(
             <div className="container">
                 <ul>
-                    {this.state.todoList.map((todoEachObj, i) => {
+                    {this.props.todos.map((todoEachObj, i) => {
                         return <Todo 
                             todoItemObj={todoEachObj} 
                             key={todoEachObj.id}
@@ -83,4 +83,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default
+export default connect(mapStateToProps)(TodoList);

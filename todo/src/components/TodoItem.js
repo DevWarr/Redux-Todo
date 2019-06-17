@@ -14,7 +14,7 @@ const Todo = (props) => {
             onClick={props.onClick}
             id={props.id}
         >
-            {props.todoItemObj.task} - {date}
+            {props.todoItemObj.task}
             <span onClick={props.clearItem} >Delete</span>
         </li>
     );
