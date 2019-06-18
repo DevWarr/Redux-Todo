@@ -20,13 +20,15 @@ export default (state = initialState, action) => {
         case ADD_TODO:
             return { todos: [...state.todos, action.payload] };
         case DELETE_TODO:
-            console.log("DelOne")
+            console.log(action.payload)
             return { todos: state.todos.filter(todoObj => todoObj.id !== action.payload) };
         case DELETE_ALL:
             return { todos: [] }
         case DELETE_SELECTED:
             return { todos: state.todos.filter(todoObj => !todoObj.completed) };
         case TOGGLE_TODO:
+
+            // Not mapping the state (un-ideal state change)
             state.todos[action.payload].completed = !state.todos[action.payload].completed;
             return { todos: [...state.todos]}
         default:
