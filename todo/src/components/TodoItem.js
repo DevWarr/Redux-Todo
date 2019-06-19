@@ -10,15 +10,15 @@ const Todo = (props) => {
     const toggle = e => {
         e.preventDefault();
         e.stopPropagation();
-        props.onClick(props.id)
+        props.onClick(props.todoItemObj.id)
     }
 
     const clear = e => {
         e.preventDefault();
         e.stopPropagation();
-        props.clearItem(props.id)
+        props.clearItem(props.todoItemObj.id)
     }
-
+    console.log(props.todoItemObj);
 
     return (
         <li 
